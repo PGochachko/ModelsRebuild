@@ -74,8 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>D:\Projects\GLSL\Tools\glm\glm;D:\Projects\GLSL\Tools\glfw-3.2.1%28x64%29\include\GLFW;D:\Projects\GLSL\Tools\glew-2.0%28x32%29\include\GL;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Projects\GLSL\Tools\glfw-3.2.1%28x64%29\lib-vc2015;D:\Projects\GLSL\Tools\glew-2.0%28x32%29\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)\opengl\glm\glm;$(SolutionDir)\opengl\glfw-3.2.1%28x64%29\include\GLFW;$(SolutionDir)\opengl\glew-2.0%28x32%29\include\GL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\opengl\glfw-3.2.1%28x64%29\lib-vc2015;$(SolutionDir)\opengl\glew-2.0%28x32%29\lib\Release\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -106,12 +106,12 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>D:\xOpenCV\build\install\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\opencv\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>D:\xOpenCV\build\install\x64\vc14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\opencv\x64\vc14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_core340d.lib;opencv_imgproc340d.lib;opencv_calib3d340d.lib;opencv_highgui340d.lib;opencv_ml340d.lib;opencv_video340d.lib;opencv_imgcodecs340d.lib;opencv_features2d340d.lib;opencv_videoio340d.lib;opencv_xfeatures2d340d.lib;opencv_videostab340d.lib;opencv_flann340d.lib;opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
