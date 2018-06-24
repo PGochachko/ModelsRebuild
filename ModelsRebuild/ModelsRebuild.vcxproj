@@ -74,8 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\opengl\glm\glm;$(SolutionDir)\opengl\glfw-3.2.1%28x64%29\include\GLFW;$(SolutionDir)\opengl\glew-2.0%28x32%29\include\GL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\opengl\glfw-3.2.1%28x64%29\lib-vc2015;$(SolutionDir)\opengl\glew-2.0%28x32%29\lib\Release\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(PCL_ROOT)\3rdParty\VTK\include\vtk-8.0;$(PCL_ROOT)\include\pcl-1.8;$(PCL_ROOT)\3rdParty\FLANN\include;$(PCL_ROOT)\3rdParty\Qhull\include;$(PCL_ROOT)\3rdParty\Boost\include\boost-1_64;$(OPENNI2_INCLUDE64);$(PCL_ROOT)\3rdParty\Eigen\eigen3;$(SolutionDir)\opengl\glm\glm;$(SolutionDir)\opengl\glfw-3.2.1%28x64%29\include\GLFW;$(SolutionDir)\opengl\glew-2.0%28x32%29\include\GL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(PCL_ROOT)\lib;$(PCL_ROOT)\3rdParty\Boost\lib;$(PCL_ROOT)\3rdParty\FLANN\lib;$(PCL_ROOT)\3rdParty\Qhull\lib;$(PCL_ROOT)\3rdParty\VTK\lib;$(OPENNI2_LIB64);$(SolutionDir)\opengl\glfw-3.2.1%28x64%29\lib-vc2015;$(SolutionDir)\opengl\glew-2.0%28x32%29\lib\Release\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -104,15 +104,15 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\opencv\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\opencv\x64\vc14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opencv_core340d.lib;opencv_imgproc340d.lib;opencv_calib3d340d.lib;opencv_highgui340d.lib;opencv_ml340d.lib;opencv_video340d.lib;opencv_imgcodecs340d.lib;opencv_features2d340d.lib;opencv_videoio340d.lib;opencv_xfeatures2d340d.lib;opencv_videostab340d.lib;opencv_flann340d.lib;opengl32.lib;glfw3.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opencv_core340d.lib;opencv_imgproc340d.lib;opencv_calib3d340d.lib;opencv_highgui340d.lib;opencv_ml340d.lib;opencv_video340d.lib;opencv_imgcodecs340d.lib;opencv_features2d340d.lib;opencv_videoio340d.lib;opencv_xfeatures2d340d.lib;opencv_videostab340d.lib;opencv_flann340d.lib;opengl32.lib;glfw3.lib;glew32s.lib;pcl_common_debug.lib;pcl_features_debug.lib;pcl_filters_debug.lib;pcl_io_debug.lib;pcl_io_ply_debug.lib;pcl_kdtree_debug.lib;pcl_keypoints_debug.lib;pcl_octree_debug.lib;pcl_registration_debug.lib;pcl_sample_consensus_debug.lib;pcl_search_debug.lib;pcl_segmentation_debug.lib;pcl_surface_debug.lib;pcl_tracking_debug.lib;pcl_visualization_debug.lib;OpenNI2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

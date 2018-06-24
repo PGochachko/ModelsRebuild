@@ -310,9 +310,10 @@ int CreateOpenGLWindow(vector<cv::Point3f> &points)
 	projection = glm::perspective(45.0f, 800.0f / 600.0f, 0.001f, 100.0f);
 	// Матрица камеры
 	glm::mat4 View = glm::lookAt(
-		glm::vec3(points[points.size()-1].x, points[points.size() - 1].y, points[points.size() - 1].z), // Позиция в  (0,0,3)мировых координат
-		//glm::vec3(0.0f, 0.0f, 3.0f), // Позиция в  (0,0,3)мировых координат
-		glm::vec3(points[points.size() - 1].x, points[points.size() - 1].y, 0.0f), // И смотрит в центр экрана
+//		glm::vec3(points[points.size()-1].x, points[points.size() - 1].y, points[points.size() - 1].z), // Позиция в  (0,0,3)мировых координат
+		glm::vec3(0.0f, 0.0f, 3.0f), // Позиция в  (0,0,3)мировых координат
+//		glm::vec3(points[points.size() - 1].x, points[points.size() - 1].y, 0.0f), // И смотрит в центр экрана
+		glm::vec3(0.0f, 0.0f, 0.0f), // И смотрит в центр экрана
 		glm::vec3(0.0f, 1.0f, 0.0f)  // Верх камеры смотрит вверх
 	);
 	//// Матрица модели – единичная матрица. Модель находится в центре мировых координат
