@@ -29,8 +29,17 @@
 
 #pragma comment(lib, "OpenGL32.lib")
 
+
 using namespace cv;
 using namespace cv::xfeatures2d;
+
+typedef struct Mesh 
+{ 
+	Mat vertices; 
+	Mat faces; 
+
+	Mesh(Mat v, Mat f) :vertices(v), faces(f) {}; 
+} Mesh;
 
 using namespace std;
 
@@ -260,6 +269,8 @@ void SearchAndCompare(Mat &frame1, Mat &frame2, Mat &distortionMatrix, Mat &came
 			ne.setInputCloud(cloud);
 			ne.setSearchMethod(tree1);
 			ne.setKSearch(20);
+			ne.setNumberOfThreads(2);
+
 			PointCloud<Normal>::Ptr normals(new PointCloud<Normal>);
 			ne.compute(*normals);
 
@@ -273,15 +284,35 @@ void SearchAndCompare(Mat &frame1, Mat &frame2, Mat &distortionMatrix, Mat &came
 
 			cout << "begin marching cubes reconstruction" << endl;
 
-			MarchingCubesRBF<PointNormal> mc;
-			PolygonMesh::Ptr triangles(new PolygonMesh);
-			mc.setInputCloud(cloud_with_normals);
-			mc.setSearchMethod(tree);
-			mc.reconstruct(*triangles);
 
-			cout << triangles->polygons.size() << " triangles created" << endl;
+			
+			MarchingCubesRBF<PointNormal> mc;
+			mc.setInputCloud(cloud_with_normals);
+
+			PolygonMesh mesh;
+			mc.reconstruct(mesh);
+
+			Mesh result(Mat(mesh.cloud.width * mesh.cloud.height, 4, CV_32FC1), Mat(mesh.polygons.size(), 3, CV_32SC1));
+
+			//PolygonMesh::Ptr triangles(new PolygonMesh);
+
+
+			//mc.setSearchMethod(tree);
+			//mc.reconstruct(*triangles);
+
+			cout << mesh.polygons.size() << " triangles created" << endl;
 		}
 	}
 
 }
 
+// convert an uncommon PCL mesh representation to ours
+void convert(Mesh dst, std::vector<pcl::Vertices> faces)
+{
+	for (int i = 0; i<faces.size(); i++) {
+		assert(faces[i].vertices.size() == 3);
+		for (char j = 0; j<3; j++) {
+			dst.faces.at<int32_t>(i, j) = faces[i].vertices[j];
+		}
+	}
+}
